@@ -1,3 +1,4 @@
+const body = document.querySelector('.weather-body');
 const inputBox = document.querySelector('.input-box');
 const searchBtn = document.getElementById('searchBtn');
 const ville = document.querySelector('.ville');
@@ -15,37 +16,42 @@ async function checkWeather(city){
     const api_key = "700906904c824b3ab9194941230508";
     const url = `http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}&aqi=yes`;
     
-    const response = await fetch(`${url}`)
-    const weather_data = await response.json();
+    try {
+        const response = await fetch(url)
+        const weather_data = await response.json();
 
-    ville.textContent = `${weather_data.location.name}`;
-    country.textContent = `${weather_data.location.country}`;
-    weather_img.src = `${weather_data.current.condition.icon}`;
-    celcDisplay.textContent = `${weather_data.current.temp_c}°C`;
-    fahrDisplay.textContent = `${weather_data.current.temp_f}°F`;
-    currentCondition.textContent = `${weather_data.current.condition.text}`;
+        ville.textContent = `${weather_data.location.name}`;
+        country.textContent = `${weather_data.location.country}`;
+        weather_img.src = `${weather_data.current.condition.icon}`;
+        celcDisplay.textContent = `${weather_data.current.temp_c}°C`;
+        fahrDisplay.textContent = `${weather_data.current.temp_f}°F`;
+        currentCondition.textContent = `${weather_data.current.condition.text}`;
 
-    humidity.textContent = `${weather_data.current.humidity}%`;
-    wind_speed.textContent = `${weather_data.current.wind_kph}Km/H`;
+        humidity.textContent = `${weather_data.current.humidity}%`;
+        wind_speed.textContent = `${weather_data.current.wind_kph}Km/H`;
 
-    console.log(weather_data);
+        console.log(weather_data);
+
+        searchBtn.addEventListener('click', () => {
+            checkWeather(inputBox.value);
+        });
+        
+        fahr.addEventListener('click', () => {
+            celcDisplay.style.display = "none";
+            celc.style.backgroundColor = "transparent";
+            fahrDisplay.style.display = "block";
+            fahr.style.backgroundColor = "#3ea2f3bb";
+        });
+        
+        celc.addEventListener('click', () => {
+            fahrDisplay.style.display = "none";
+            fahr.style.backgroundColor = "transparent";
+            celcDisplay.style.display = "block";
+            celc.style.backgroundColor = "#3ea2f3bb";
+        });
+
+    } catch(error) {
+        body.textContent = 'Error fetching weather data:' + error;
+        console.error('Error fetching weather data:', error);
+    }
 }
-
-
-searchBtn.addEventListener('click', () => {
-    checkWeather(inputBox.value);
-});
-
-fahr.addEventListener('click', () => {
-    celcDisplay.style.display = "none";
-    celc.style.backgroundColor = "transparent";
-    fahrDisplay.style.display = "block";
-    fahr.style.backgroundColor = "#3ea2f3bb";
-});
-
-celc.addEventListener('click', () => {
-    fahrDisplay.style.display = "none";
-    fahr.style.backgroundColor = "transparent";
-    celcDisplay.style.display = "block";
-    celc.style.backgroundColor = "#3ea2f3bb";
-});
