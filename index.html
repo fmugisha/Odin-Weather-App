@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App With JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="search-box">
+                <input type="text" placeholder="Enter your location" class="input-box">
+
+                <button class="fa-solid fa-magnifying-glass" id="searchBtn"></button>
+            </div>
+        </div>
+
+        <div class="weather-body">
+            <p class="region"><span class="ville">City</span>, <span class="pays">Country</span></p>
+            <img src="https://webstockreview.net/images/clipart-cloud-vector-8.png" alt="Weather Image" class="weather-img">
+
+            <div class="weather-box">
+                <p class="temperature" id="celc-display">0 <sup>°C</sup></p>
+                <p class="temperature" id="fahr-display">0 <sup>°F</sup></p>
+                <p class="condition">light rain</p>
+            </div>
+
+            <div class="temp-btn">
+                <button id="fahr"><sup>o</sup>F</button>
+                |
+                <button id='celc'><sup>o</sup>C</button>
+            </div>
+
+            <div class="weather-details">
+                <div class="humidity">
+                    <i class="fa-sharp fa-solid fa-droplet"></i>
+                    <div class="text">
+                        <span id="humidity">0%</span>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+
+                <div class="wind">
+                    <i class="fa-solid fa-wind"></i>
+                    <div class="text">
+                        <span id="wind-speed">0Km/H</span>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="func.js"></script>
+    <script src="https://kit.fontawesome.com/595a890311.js" crossorigin="anonymous"></script>
+</body>
+</html>
